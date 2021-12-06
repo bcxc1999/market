@@ -17,21 +17,5 @@ public class UserController {
     @Reference
     UserService userService;
 
-    @RequestMapping("/userInsert")
-    public @ResponseBody String UserInsert(){
-        int i = userService.userInsert(User.builder()
-                .phone("13900000002")
-                .name("不吃香菜")
-                .sno("20180861221")
-                .createTime(new Date()).build());
-        if(i>0)
-            return "success";
-        else
-            return "erro";
-    }
-
-    @RequestMapping("/userDetail/{sno}")
-    public @ResponseBody User UserDetail(@PathVariable("sno") String sno){
-        return userService.userInfo(sno);
-    }
+    
 }

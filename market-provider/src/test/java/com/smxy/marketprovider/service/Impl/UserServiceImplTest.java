@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
+import java.util.Random;
 
 public class UserServiceImplTest {
 
@@ -28,21 +29,13 @@ public class UserServiceImplTest {
 
     @Test
     public void test_userInsert(){
-       when(userMapper.insert(any())).thenReturn(NumberUtils.INTEGER_ZERO);
-       int i = userService.userInsert(userDTO());
-       Assert.assertEquals(0,0);
-        verify(userMapper).insert(any());
+        Random random = new Random();
+        StringBuilder code = new StringBuilder();
+        for(int i=0;i<4;i++)
+            code.append(random.nextInt(10));
+        System.out.println(code.toString());
     }
 
-    @Test
-    public void test_userInfo(){
-        User u = userDTO();
-        when(userMapper.selectOne(any())).thenReturn(u);
-        User user = userService.userInfo("20180861227");
-        verify(userMapper).selectOne(any());
-        Assert.assertEquals(u,user);
-       // Assert.assertTrue();
-    }
 
     private User userDTO(){
         return User.builder()
