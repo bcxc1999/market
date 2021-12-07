@@ -8,6 +8,7 @@ import com.smxy.marketapi.service.UserService;
 import com.smxy.marketprovider.dao.UserMapper;
 import com.smxy.marketprovider.dao.UserPwdMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -25,7 +26,8 @@ public class UserServiceImpl implements UserService {
                 .eq(User::getPhone,phone));
     }
 
-    public int register(String username,String phone, String pwd,String verificationCode) {
+    @Transactional
+    public int register(String username,String phone, String pwd) {
         userMapper.insert(User.builder()
                 .phone(phone)
                 .name(username)
