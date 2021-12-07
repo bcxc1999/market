@@ -14,12 +14,6 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/c2c?serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: xl199914
-
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    timeout: 30000
-
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

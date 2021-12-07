@@ -12,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
-import java.util.Random;
 
 public class UserServiceImplTest {
 
@@ -27,22 +26,6 @@ public class UserServiceImplTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void test_userInsert(){
-        Random random = new Random();
-        StringBuilder code = new StringBuilder();
-        for(int i=0;i<4;i++)
-            code.append(random.nextInt(10));
-        System.out.println(code.toString());
-    }
 
-
-    private User userDTO(){
-        return User.builder()
-                .phone("13900000000")
-                .name("不吃香菜")
-                .sno("20180861228")
-                .createTime(new Date()).build();
-    }
 
 }
