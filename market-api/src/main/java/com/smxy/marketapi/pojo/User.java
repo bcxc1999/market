@@ -24,7 +24,6 @@ public class User extends Model<User> implements Serializable {
     private int id;
 
     @TableField("modify")
-    @JSONField(format = "yyyy-MM-dd HH-mm-ss")
     private Date modify;
 
     @TableField("userName")
