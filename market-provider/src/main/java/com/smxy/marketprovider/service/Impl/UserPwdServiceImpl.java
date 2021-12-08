@@ -21,4 +21,10 @@ public class UserPwdServiceImpl implements UserPwdService {
         return userPwdMapper.selectOne(new LambdaQueryWrapper<UserPwd>()
                 .eq(UserPwd::getPhone,phone));
     }
+
+    @Override
+    public int updateByPhone(UserPwd userPwd) {
+        return userPwdMapper.update(userPwd,new LambdaQueryWrapper<UserPwd>()
+                .eq(UserPwd::getPhone,userPwd.getPhone()));
+    }
 }
