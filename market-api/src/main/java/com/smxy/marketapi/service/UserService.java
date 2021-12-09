@@ -1,10 +1,12 @@
 package com.smxy.marketapi.service;
 
-import com.smxy.marketapi.pojo.User;
+import com.smxy.marketapi.bean.UserVO;
 
 public interface UserService {
 
-     User queryByPhone(String phone);
-     int register(String username,String phone,String pwd);
+     UserVO queryBySno(String sno);
+     UserVO queryByPhone(String phone);
+     int updateByPhone(UserVO user);
+     int register(String username,String sno,String phone,String pwd);
 
 }

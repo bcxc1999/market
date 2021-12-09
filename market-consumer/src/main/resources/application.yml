@@ -17,5 +17,10 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+# token
+token:
+  privateKey: 'xllx'
+  yangToken: 1000
+  oldToken: 3000
 server:
   port: 8180

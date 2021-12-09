@@ -1,7 +1,6 @@
 package com.smxy.marketconsumer.service;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +42,7 @@ public class CacheService {
             if (value != null) {
                 redisTemplate
                         .opsForValue()
-                        .set(DEFAULT_KEY_PREFIX + key, JSON.toJSONString(value));
+                        .set(DEFAULT_KEY_PREFIX + key, value.toString());
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -63,7 +62,7 @@ public class CacheService {
             if (value != null) {
                 redisTemplate
                         .opsForValue()
-                        .set(DEFAULT_KEY_PREFIX + key, JSON.toJSONString(value), timeout, unit);
+                        .set(DEFAULT_KEY_PREFIX + key, value.toString(), timeout, unit);
             }
         } catch (Exception e) {
             log.error(e.getMessage(), e);

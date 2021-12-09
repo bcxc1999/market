@@ -1,7 +1,8 @@
 package com.smxy.marketconsumer.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.smxy.marketapi.pojo.UserPwd;
+import com.smxy.marketapi.bean.UserPwdDTO;
+import com.smxy.marketapi.bean.UserVO;
 import com.smxy.marketapi.service.UserPwdService;
 import com.smxy.marketapi.service.UserService;
 import com.smxy.marketconsumer.service.CacheService;
@@ -14,7 +15,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController{
 
     private final static int TIME_OUT = 1000 * 60 * 5;
 
@@ -40,14 +41,35 @@ public class UserController {
         }
         if(code.equals(cacheService.get(phone))){
             delCode(phone);
-            userPwdService.updateByPhone(UserPwd.builder()
+            userPwdService.updateByPhone(UserPwdDTO.builder()
                     .phone(phone)
-                    .pwd(passwordEncoder.encode(pwd))
-                    .modify(new Date()).build());
+                    .pwd(passwordEncoder.encode(pwd)).build());
             return "修改成功";
 
         }
         return "验证码错误";
+    }
+
+    @RequestMapping("/completeInfo")
+    public String completeInfo(@RequestParam(value = "realName",required = false) String rName,
+                               @RequestParam String phone,
+                               @RequestParam(required = false) String clazz,
+                               @RequestParam(required = false) String dormitory,
+                               @RequestParam(required = false) String dormitoryNo,
+                               @RequestParam(required = false) String sex,
+                               @RequestParam(value = "userName",required = false) String name,
+                               @RequestParam(required = false) String avatar){
+
+        return userService.updateByPhone(UserVO.builder()
+                .phone(phone)
+                .rName(rName)
+                .clazz(clazz)
+                .name(name)
+                .dormitory(dormitory)
+                .dormitoryNo(dormitoryNo)
+                .avatar(avatar)
+                .sex(Integer.parseInt(sex)).build())+"";
+
     }
 
     /**

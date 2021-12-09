@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/register")
-public class RegisterController {
+public class RegisterController extends BaseController{
     private final static int TIME_OUT = 1000 * 60 * 5;
 
     @Autowired
@@ -23,6 +23,7 @@ public class RegisterController {
 
     @PostMapping("")
     public String register(@RequestParam("username") String username,
+                           @RequestParam("sno") String sno,
                            @RequestParam("phone") String phone,
                            @RequestParam("password") String password,
                            @RequestParam("verificationCode") String verificationCode){
@@ -32,7 +33,7 @@ public class RegisterController {
         }
         if(verificationCode.equals(cacheService.get(phone))){
             delCode(phone);
-            userService.register(username,phone, passwordEncoder.encode(password));
+            userService.register(username,sno,phone, passwordEncoder.encode(password));
             return "注册成功";
         }
         return "验证码错误";
